@@ -1,6 +1,9 @@
+# $ rm -rf Debug; cmake -B Debug && cmake --build Debug
+# $ cmake --build Debug --target program
+
 cmake_minimum_required(VERSION 3.20)
 if(CMAKE_SOURCE_DIR STREQUAL CMAKE_BINARY_DIR)
-    message(FATAL_ERROR "Use build directory different from source directory!")
+    message(FATAL_ERROR "My: Use build directory different from source directory!")
 endif()
 
 ###################### CMAKE_TOOLCHAIN_FILE ########################### чтоб в cli не писать "cmake ... -P cubeide-gcc.cmake"
@@ -25,18 +28,18 @@ if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE                "Debug")
 endif()
 if(CMAKE_BUILD_TYPE MATCHES Debug)
-    set(MY_BUILD_TYPE_FLAGS             "-DDEBUG -O0 -g3")
+    set(CMAKE_C_FLAGS_DEBUG             "-DDEBUG -O0 -g3") #не влияет на CMAKE_C/ASM_FLAGS, а дополняет опц-строку для BUILD_TYPE=DEBUG
+    set(CMAKE_ASM_FLAGS_DEBUG           "-DDEBUG -O0 -g3") #не влияет на CMAKE_C/ASM_FLAGS, а дополняет опц-строку для BUILD_TYPE=DEBUG
+elseif(CMAKE_BUILD_TYPE MATCHES Release)
+    set(CMAKE_C_FLAGS_DEBUG             "-DRELEASE -Os -g0")
+    set(CMAKE_ASM_FLAGS_DEBUG           "-DRELEASE -Os -g0")
 endif()
-if(CMAKE_BUILD_TYPE MATCHES Release)
-    set(MY_BUILD_TYPE_FLAGS             "-DRELEASE -Os -g0")
-endif()
-set(CMAKE_C_FLAGS_DEBUG             "${MY_BUILD_TYPE_FLAGS}") #не влияет на CMAKE_C/ASM_FLAGS, а дополняет опц-строку для BUILD_TYPE=DEBUG
-set(CMAKE_ASM_FLAGS_DEBUG           "${MY_BUILD_TYPE_FLAGS}") #не влияет на CMAKE_C/ASM_FLAGS, а дополняет опц-строку для BUILD_TYPE=DEBUG
+
 
 ###################### PROJECT SETUP ##################################
 
-cmake_path(GET CMAKE_SOURCE_DIR 		STEM   MY_PROJECT_NAME)         #STEM/FILENAME
-project( ${MY_PROJECT_NAME}             #This sets: PROJECT_NAME, CMAKE_PROJECT_NAME, PROJECT_SOURCE_DIR, PROJECT_BINARY_DIR...
+cmake_path(GET CMAKE_SOURCE_DIR 		STEM   PROJECT_NAME)         #STEM/FILENAME
+project( ${PROJECT_NAME}                #This sets: CMAKE_PROJECT_NAME, PROJECT_SOURCE_DIR, PROJECT_BINARY_DIR...
     VERSION 							0.0.0.1                 #<major>[.<minor>[.<patch>[.<tweak>]]]
     DESCRIPTION                         "My template for STM32F0: NUCLEO-F072RB (MC: stm32f072rbt6)"
     HOMEPAGE_URL                        "https://github.com/benjami-r/f000"
@@ -48,24 +51,32 @@ include_directories(
     Drivers/CMSIS/Device/ST/STM32F0xx/Include                     #взято из Repository
     Drivers/CMSIS/Include                                         #взято из Repository
 )
-add_compile_definitions(
-)
-add_compile_options( #не влияет на CMAKE_C/ASM_FLAGS, а дополняет опц-строку
-)
-add_link_options( #не влияет на CMAKE_EXE_LINKER_FLAGS, а дополняет опц-строку
-)
-#add_library()
 add_executable( ${PROJECT_NAME}
     Startup/startup.s
     Sources/main.c
 )
+#add_compile_definitions()
+#add_compile_options() #не влияет на CMAKE_C/ASM_FLAGS, а дополняет опц-строку
+#add_link_options() #не влияет на CMAKE_EXE_LINKER_FLAGS, а дополняет опц-строку
+#add_library()
 
-add_custom_target(binary_tgt ALL ${CMAKE_OBJCOPY} -O binary -S "${PROJECT_NAME}.elf" "${PROJECT_NAME}.bin")
 
+###################### CUSTOM TARGET ##################################
+
+#add_custom_target(objcopy_binary ALL ${CMAKE_OBJCOPY} -O binary -S "${PROJECT_NAME}.elf" "${PROJECT_NAME}.bin")
+# add_custom_target("${PROJECT_NAME}.bin"
+#     #ALL 
+#     ${CMAKE_OBJCOPY} -O binary -S "${PROJECT_NAME}${CMAKE_EXECUTABLE_SUFFIX_C}" "${PROJECT_NAME}.bin"
+#     DEPENDS ${PROJECT_NAME}${CMAKE_EXECUTABLE_SUFFIX_C}
+# )
+add_custom_target(program
+    #message("IY;S ME")
+    openocd -f board/st_nucleo_f0.cfg -c "program ${PROJECT_NAME}${CMAKE_EXECUTABLE_SUFFIX_C} verify reset exit"
+)
 
 # = = = = = = = = = = = = = = = = = = = = = = = 
 # See: https://cmake.org/cmake/help/latest/
-# $ rm -rf Debug; cmake -B Debug && cmake --build Debug
+# $ cmake --build Debug --target clean  - подчищает часть, но не удаляет Debug
 # $ cd f000
 # $ rm -rf Debug                //$ make clean
 # $ cmake -B Debug
@@ -78,3 +89,4 @@ add_custom_target(binary_tgt ALL ${CMAKE_OBJCOPY} -O binary -S "${PROJECT_NAME}.
 # Создай проект и см. MX-noAll-Adv-CMake/cmake/gcc-arm-none-eabi.cmake
 
 # add_subdirectory() - добавить подпроекты со своими цмаками?
+# add_custom_target (можно реализовать openocd, свой clean) https://stackoverflow.com/questions/9680420/looking-for-a-cmake-clean-command-to-clear-up-cmake-output
