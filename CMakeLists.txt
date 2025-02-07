@@ -22,7 +22,7 @@ set (CMAKE_EXECUTABLE_SUFFIX_C          ".elf")
 set (MY_MCU_FLAGS                       "-D${MY_MCU} -mcpu=cortex-m0 -mthumb -mfloat-abi=soft")
 set (CMAKE_C_FLAGS                      "${MY_MCU_FLAGS} -Wall -Wextra -Wpedantic -ffunction-sections -fdata-sections -fstack-usage")
 set (CMAKE_ASM_FLAGS                    "${CMAKE_C_FLAGS} -x assembler-with-cpp")
-set (CMAKE_EXE_LINKER_FLAGS             "-T../linker.ld -nostdlib -static -Wl,-Map=% -Wl,--gc-sections -Wl,--print-memory-usage")
+set (CMAKE_EXE_LINKER_FLAGS             "-T../Core/linker.ld -nostdlib -static -Wl,-Map=% -Wl,--gc-sections -Wl,--print-memory-usage")
 
 if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE                "Debug")
@@ -47,13 +47,13 @@ project( ${PROJECT_NAME}                #This sets: CMAKE_PROJECT_NAME, PROJECT_
 )
 
 include_directories(
-    Sources/Inc
-    Drivers/CMSIS/Device/ST/STM32F0xx/Include                     #взято из Repository
-    Drivers/CMSIS/Include                                         #взято из Repository
+    Core/Sources/Inc
+    Core/Drivers/CMSIS/Device/ST/STM32F0xx/Include                     #взято из Repository
+    Core/Drivers/CMSIS/Include                                         #взято из Repository
 )
 add_executable( ${PROJECT_NAME}
-    Startup/startup.s
-    Sources/main.c
+    Core/Startup/startup.s
+    Core/Sources/main.c
 )
 #add_compile_definitions()
 #add_compile_options() #не влияет на CMAKE_C/ASM_FLAGS, а дополняет опц-строку
