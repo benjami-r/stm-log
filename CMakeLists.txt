@@ -1,5 +1,5 @@
-# $ rm -rf Debug; cmake -B Debug && cmake --build Debug
-# $ cmake --build Debug --target program
+# $ rm -rf Build; cmake -B Build && cmake --build Build
+# $ cmake --build Build --target program
 
 cmake_minimum_required(VERSION 3.20)
 if(CMAKE_SOURCE_DIR STREQUAL CMAKE_BINARY_DIR)
