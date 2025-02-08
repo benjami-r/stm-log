@@ -69,11 +69,15 @@ add_executable( ${PROJECT_NAME}
 #     ${CMAKE_OBJCOPY} -O binary -S "${PROJECT_NAME}${CMAKE_EXECUTABLE_SUFFIX_C}" "${PROJECT_NAME}.bin"
 #     DEPENDS ${PROJECT_NAME}${CMAKE_EXECUTABLE_SUFFIX_C}
 # )
+
 add_custom_target(program
     #message("IY;S ME")
     openocd -f board/st_nucleo_f0.cfg -c "program ${PROJECT_NAME}${CMAKE_EXECUTABLE_SUFFIX_C} verify reset exit"
 )
-
+add_custom_target(size
+    ALL
+    ${CMAKE_SIZE} ${PROJECT_NAME}${CMAKE_EXECUTABLE_SUFFIX_C}
+)
 # = = = = = = = = = = = = = = = = = = = = = = = 
 # See: https://cmake.org/cmake/help/latest/
 # $ cmake --build Debug --target clean  - подчищает часть, но не удаляет Debug
