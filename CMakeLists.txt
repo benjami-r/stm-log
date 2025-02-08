@@ -61,7 +61,7 @@ add_executable( ${PROJECT_NAME}
 #add_library()
 
 
-###################### CUSTOM TARGET ##################################
+###################### CUSTOM TARGETS & COMMANDS ######################
 
 #add_custom_target(objcopy_binary ALL ${CMAKE_OBJCOPY} -O binary -S "${PROJECT_NAME}.elf" "${PROJECT_NAME}.bin")
 # add_custom_target("${PROJECT_NAME}.bin"
@@ -69,8 +69,13 @@ add_executable( ${PROJECT_NAME}
 #     ${CMAKE_OBJCOPY} -O binary -S "${PROJECT_NAME}${CMAKE_EXECUTABLE_SUFFIX_C}" "${PROJECT_NAME}.bin"
 #     DEPENDS ${PROJECT_NAME}${CMAKE_EXECUTABLE_SUFFIX_C}
 # )
+# add_custom_target(UPLOAD
+#         arm-none-eabi-gdb -iex "target remote tcp:127.0.0.1:3333"
+#         -iex "monitor program $<TARGET_FILE:${PROJECT_NAME}.elf>"
+#         -iex "monitor reset init"
+#         -iex "disconnect" -iex "quit"
+# )
 add_custom_target(program
-    #message("IY;S ME")
     openocd -f board/st_nucleo_f0.cfg -c "program ${PROJECT_NAME}${CMAKE_EXECUTABLE_SUFFIX_C} verify reset exit"
 )
 # add_custom_target(size
