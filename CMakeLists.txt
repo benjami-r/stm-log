@@ -22,7 +22,7 @@ set (CMAKE_EXECUTABLE_SUFFIX_C          ".elf")
 set (MY_MCU_FLAGS                       "-D${MY_MCU} -mcpu=cortex-m0 -mthumb -mfloat-abi=soft")
 set (CMAKE_C_FLAGS                      "${MY_MCU_FLAGS} -Wall -Wextra -Wpedantic -ffunction-sections -fdata-sections -fstack-usage")
 set (CMAKE_ASM_FLAGS                    "${CMAKE_C_FLAGS} -x assembler-with-cpp")
-set (CMAKE_EXE_LINKER_FLAGS             "-T../Core/linker.ld -nostdlib -static -Wl,-Map=% -Wl,--gc-sections -Wl,--print-memory-usage")
+set (CMAKE_EXE_LINKER_FLAGS             "-T../Core/linker.ld -nostdlib -static -Wl,-Map=% -Wl,--gc-sections -Wl,--print-memory-usage") #"-Map=${PROJECT_BINARY_DIR}/${PROJECT_NAME}.map"
 
 if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE                "Debug")
@@ -73,9 +73,15 @@ add_custom_target(program
     #message("IY;S ME")
     openocd -f board/st_nucleo_f0.cfg -c "program ${PROJECT_NAME}${CMAKE_EXECUTABLE_SUFFIX_C} verify reset exit"
 )
-add_custom_target(size
-    ALL
-    ${CMAKE_SIZE} ${PROJECT_NAME}${CMAKE_EXECUTABLE_SUFFIX_C}
+# add_custom_target(size
+#     ALL
+#     ${CMAKE_SIZE} ${PROJECT_NAME}${CMAKE_EXECUTABLE_SUFFIX_C}
+# )
+add_custom_command(
+    TARGET ${PROJECT_NAME}
+    POST_BUILD
+    COMMAND ${CMAKE_SIZE} ${PROJECT_NAME}${CMAKE_EXECUTABLE_SUFFIX_C}
+    COMMENT "Displays the sizes of sections inside binary file ${PROJECT_NAME}${CMAKE_EXECUTABLE_SUFFIX_C}:"
 )
 # = = = = = = = = = = = = = = = = = = = = = = = 
 # See: https://cmake.org/cmake/help/latest/
