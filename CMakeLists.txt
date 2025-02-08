@@ -47,12 +47,12 @@ project( ${PROJECT_NAME}                #This sets: CMAKE_PROJECT_NAME, PROJECT_
 )
 
 include_directories(
-    Core/Sources/Inc
+    Core/Sources/Include
     Core/Drivers/CMSIS/Device/ST/STM32F0xx/Include                     #взято из Repository
     Core/Drivers/CMSIS/Include                                         #взято из Repository
 )
 add_executable( ${PROJECT_NAME}
-    Core/Startup/startup.s
+    Core/Sources/startup.s
     Core/Sources/main.c
 )
 #add_compile_definitions()
@@ -69,7 +69,6 @@ add_executable( ${PROJECT_NAME}
 #     ${CMAKE_OBJCOPY} -O binary -S "${PROJECT_NAME}${CMAKE_EXECUTABLE_SUFFIX_C}" "${PROJECT_NAME}.bin"
 #     DEPENDS ${PROJECT_NAME}${CMAKE_EXECUTABLE_SUFFIX_C}
 # )
-
 add_custom_target(program
     #message("IY;S ME")
     openocd -f board/st_nucleo_f0.cfg -c "program ${PROJECT_NAME}${CMAKE_EXECUTABLE_SUFFIX_C} verify reset exit"
