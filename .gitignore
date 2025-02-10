@@ -1,4 +1,5 @@
 #My
-/Debug/
-/Release/
-/Build/
+Debug/
+Release/
+Build/
+cmake-build-debug/

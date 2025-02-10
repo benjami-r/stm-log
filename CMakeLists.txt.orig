@@ -55,12 +55,20 @@ add_executable( ${PROJECT_NAME}
 add_custom_target(program               #UPLOAD executable to flash
     openocd -f board/st_nucleo_f0.cfg -c "program ${PROJECT_NAME}${CMAKE_EXECUTABLE_SUFFIX_C} verify reset exit"
 )
+<<<<<<< HEAD
+add_custom_command(                     #size
+    TARGET ${PROJECT_NAME}
+    POST_BUILD
+    COMMAND ${CMAKE_SIZE} ${PROJECT_NAME}${CMAKE_EXECUTABLE_SUFFIX_C}
+    COMMENT "Displays the sizes of sections inside binary file ${PROJECT_NAME}${CMAKE_EXECUTABLE_SUFFIX_C}:"
+=======
 add_custom_command(                     #size & .bin
     TARGET ${PROJECT_NAME}
     POST_BUILD
     COMMAND ${CMAKE_SIZE} ${PROJECT_NAME}${CMAKE_EXECUTABLE_SUFFIX_C}
     COMMAND ${CMAKE_OBJCOPY} -O binary -S "${PROJECT_NAME}${CMAKE_EXECUTABLE_SUFFIX_C}" "${PROJECT_NAME}.bin"
     COMMENT "Sizes of sections inside ${PROJECT_NAME}${CMAKE_EXECUTABLE_SUFFIX_C} (and create ${PROJECT_NAME}.bin):"
+>>>>>>> master
 )
 #add_custom_target(objcopy_binary ALL ${CMAKE_OBJCOPY} -O binary -S "${PROJECT_NAME}.elf" "${PROJECT_NAME}.bin")
 # add_custom_target("${PROJECT_NAME}.bin"
