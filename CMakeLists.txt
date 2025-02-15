@@ -12,7 +12,7 @@ set (MY_MCU                             "STM32F072xB")
 set (CMAKE_EXECUTABLE_SUFFIX_C          ".elf")         #set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "${PROJECT_NAME}.elf")
 
 set (MY_MCU_FLAGS                       "-D${MY_MCU} -mcpu=cortex-m0 -mthumb -mfloat-abi=soft")
-set (CMAKE_C_FLAGS                      "${MY_MCU_FLAGS} -Wall -Wextra -Wpedantic -ffunction-sections -fdata-sections -fstack-usage")
+set (CMAKE_C_FLAGS                      "${MY_MCU_FLAGS} -ffunction-sections -fdata-sections -fstack-usage -Wall -Wextra -Wpedantic") #-Wextra:"unused variable"; -Wpedantic:0b10101010-"binary constants are a C2X feature or GCC extension"
 set (CMAKE_ASM_FLAGS                    "${CMAKE_C_FLAGS} -x assembler-with-cpp")
 set (CMAKE_EXE_LINKER_FLAGS             "-T../Core/Configs/linker.ld -nostdlib -static -Wl,-Map=% -Wl,--gc-sections -Wl,--print-memory-usage")
 
@@ -31,7 +31,7 @@ endif()
 
 cmake_path(GET CMAKE_SOURCE_DIR 		STEM   PROJECT_NAME)         #STEM/FILENAME
 project( ${PROJECT_NAME}                #This sets: CMAKE_PROJECT_NAME, PROJECT_SOURCE_DIR, PROJECT_BINARY_DIR...
-    VERSION 							0.0.0.1                 #<major>[.<minor>[.<patch>[.<tweak>]]]
+    VERSION 							0.0.0.3                 #<major>[.<minor>[.<patch>[.<tweak>]]]
     DESCRIPTION                         "My template for STM32F0: NUCLEO-F072RB (MC: stm32f072rbt6)"
     HOMEPAGE_URL                        "https://github.com/benjami-r/f000"
     LANGUAGES                           C ASM #CXX
@@ -52,9 +52,6 @@ add_executable( ${PROJECT_NAME}
 
 ###################### CUSTOM TARGETS & COMMANDS ######################
 
-add_custom_target(program               #UPLOAD executable to flash
-    openocd -f board/st_nucleo_f0.cfg -c "program ${PROJECT_NAME}${CMAKE_EXECUTABLE_SUFFIX_C} verify reset exit"
-)
 add_custom_command(                     #size & .bin
     TARGET ${PROJECT_NAME}
     POST_BUILD
@@ -62,6 +59,10 @@ add_custom_command(                     #size & .bin
     COMMAND ${CMAKE_OBJCOPY} -O binary -S "${PROJECT_NAME}${CMAKE_EXECUTABLE_SUFFIX_C}" "${PROJECT_NAME}.bin"
     COMMENT "Sizes of sections inside ${PROJECT_NAME}${CMAKE_EXECUTABLE_SUFFIX_C} (and create ${PROJECT_NAME}.bin):"
 )
+add_custom_target(program               #UPLOAD executable to flash
+    openocd -f board/st_nucleo_f0.cfg -c "program ${PROJECT_NAME}${CMAKE_EXECUTABLE_SUFFIX_C} verify reset exit"
+)
+
 #add_custom_target(objcopy_binary ALL ${CMAKE_OBJCOPY} -O binary -S "${PROJECT_NAME}.elf" "${PROJECT_NAME}.bin")
 # add_custom_target("${PROJECT_NAME}.bin"
 #     #ALL
