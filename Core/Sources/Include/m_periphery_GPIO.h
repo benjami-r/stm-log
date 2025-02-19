@@ -1,21 +1,26 @@
 #pragma once
 //= = = = = = = = = = = = = = = = = = = = = = = = = 
-//#include "periphery_GPIO.h"
+//#include "m_periphery_GPIO.h"
 //Subject: GPIOx macro definitions & enums.
-//Used: CMSIS.
+//Used: CMSIS:
+//  Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f072xb.h
 //Names:
 //  'm_...'     - My define
 //  'me_...'    - My enum
 //  'mee_...'   - My enum element
 //  'ms_...'    - My struct
 //  'mu_...'    - My union
-//= = = = = = = = = = = = = = = = = = = = = = = = = 
+//= = = = = = = = = = = = = = = = = = = = = = = = =
+#ifndef __STM32F072xB_H
+#include "stm32f072xb.h"
+#endif
+
     //ВКЛЮЧАЕМ/ОТКЛЮЧАЕМ тактирование конкретного порта X[A..F] (RM0091:47,136,149)
     #define m_GPIOx_ENABLE(X)  { RCC->AHBENR |=  RCC_AHBENR_GPIO##X##EN; } //Use: m_GPIOx_ENABLE(A)
     #define m_GPIOx_DISABLE(X) { RCC->AHBENR &= ~RCC_AHBENR_GPIO##X##EN; }
     //5-ТЬ МАКРОСОВ для конфигурования конкретного пина ([0..15]) конкретного порта X[A..F]: для 4-х управляющих регистров (GPIOx_MODER, GPIOx_OTYPER, GPIOx_OSPEEDR, GPIOx_PUPDR) и объединенный макрос.
     //MODER: для pin[0..15] порта X[A..F] чистим его 2 бита, затем устанавливаем туда заданное значение.
-    enum me_GPIO_MODER {mee_GPIO_MODER_INPUT, mee_GPIO_MODER_GENERAL, mee_GPIO_MODER_ALTERNATE, mee_GPIO_MODER_ANALOG};
+    enum me_GPIO_MODER {mee_GPIO_MODER_INPUT, mee_GPIO_MODER_OUTPUT, mee_GPIO_MODER_ALTERNATE, mee_GPIO_MODER_ANALOG};
     #define m_GPIOxpin_CONFIG_MODER(X, PIN, MODE) { \
         GPIO##X->MODER      &= ~GPIO_MODER_MODER##PIN##_Msk; \
         GPIO##X->MODER      |= (MODE << GPIO_MODER_MODER##PIN##_Pos); \
@@ -60,7 +65,7 @@
         GPIO##X->PUPDR      |= (PUPD << GPIO_PUPDR_PUPDR##PIN##_Pos); \
     }
 */
-    //УСТАНОВИТЬ/СБРОСТЬ значение конкретного пина ([0..15]) конкретного порта X[A..F]:
+    //ПОДАЕМ 0/1 в конкретный пин ([0..15]) конкретного порта X[A..F]:
     #define m_GPIOxpin_SET(X, PIN)   { GPIO##X->BSRR |= GPIO_BSRR_BS_##PIN; } //Use: m_GPIOxpin_SET(A, 5)
     #define m_GPIOxpin_RESET(X, PIN) { GPIO##X->BSRR |= GPIO_BSRR_BR_##PIN; }
 
