@@ -6,9 +6,12 @@
   <component name="BackendCodeEditorMiscSettings">
     <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexedValue" value="true" type="bool" />
   </component>
-  <component name="CMakePresetLoader"><![CDATA[{
-  "useNewFormat": true
-}]]></component>
+  <component name="CMakePresetLoader">{
+  &quot;useNewFormat&quot;: true
+}</component>
+  <component name="CMakeProjectFlavorService">
+    <option name="flavorId" value="CMakePlainProjectFlavor" />
+  </component>
   <component name="CMakeReloadState">
     <option name="reloaded" value="true" />
   </component>
@@ -25,23 +28,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="69aa3d84-3f20-481b-9540-81c5449e3ce8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Core/Sources/Include/m_core_STK.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/OCD_embed_test.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/OCD_embed_test.xml.orig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/OCD_embed_test_BACKUP_12393.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/OCD_embed_test_BACKUP_12686.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/OCD_embed_test_BACKUP_12986.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/OCD_embed_test_BASE_12393.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/OCD_embed_test_BASE_12686.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/OCD_embed_test_BASE_12986.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/OCD_embed_test_LOCAL_12393.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/OCD_embed_test_LOCAL_12686.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/OCD_embed_test_LOCAL_12986.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/OCD_embed_test_REMOTE_12393.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/OCD_embed_test_REMOTE_12686.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/OCD_embed_test_REMOTE_12986.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Sources/Include/m_core_STK.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Sources/Include/m_core_STK.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Sources/Include/m_periphery_GPIO.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Sources/Include/m_periphery_GPIO.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Sources/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Sources/main.c" afterDir="false" />
     </list>
@@ -51,30 +39,43 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2tG34R3CutEa3l1QMcq1TVfBBfY" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "OpenOCD Download & Run.OCD embed-test.executor": "Run",
-    "RunOnceActivity.RadMigrateCodeStyle": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "feature/systick",
-    "last_opened_file_path": "/home/au/bin/arm-toolchain/bin/arm-none-eabi-gdb",
-    "settings.editor.selected.configurable": "com.jetbrains.cidr.embedded.config"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;OpenOCD Download &amp; Run.OCD embed-test.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.RadMigrateCodeStyle&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/systick&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/au/bin/arm-toolchain/bin/arm-none-eabi-gdb&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.cidr.embedded.config&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="OpenOCD Download &amp; Run.OCD embed-test">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="c60" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="c60" TARGET_NAME="c60" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="c60" RUN_TARGET_NAME="c60">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
