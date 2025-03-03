@@ -14,7 +14,6 @@
 //  'm_UNIT_Up/Down_REG_FLAG'       - bit on/off (1/0 - flag bit, fields, i/o)
 //  'm_UNIT_Get/Set_REG_FLAG'       - get/set configuration (flag bit, fields)
 //  'm_UNIT_Reset  _REG_FLAG'       - reset to 'Reset value' (flag bit, fields)
-//  'm_UNIT_Get    _REG_FLAG'       - get value
 //  'm_ACTION_Do_SUBACTION'         - do some action (no set data - commands)
 //= = = = = = = = = = = = = = = = = = = = = = = = =
 #ifndef __CORE_CM0_H_GENERIC

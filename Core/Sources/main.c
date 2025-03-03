@@ -22,7 +22,7 @@ int main() {
 
 	m_STK_Set_RVR_RELOAD(5000000);
 	m_STK_Down_CVR_CURRENT;
-	m_STK_Set_CSR(0,1,1);
+	m_STK_Set_CSR(1,1,1);
 
 
 	return 0;

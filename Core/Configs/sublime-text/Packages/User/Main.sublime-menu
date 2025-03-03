@@ -1,0 +1,25 @@
+[
+   {
+		"caption": "MYBUILD",
+		"mnemonic": "B",
+		"id": "My",
+		"children":
+		[
+			{ "command": "build", "mnemonic": "B" },
+			{ "command": "build", "args": {"select": true}, "caption": "Build With…" },
+			{ "command": "cancel_build", "caption": "Cancel Build", "mnemonic": "C" },
+			{
+				"caption": "Build Results",
+				"mnemonic": "R",
+				"children":
+				[
+					{ "command": "show_panel", "args": {"panel": "output.exec"}, "caption": "Show Build Results", "mnemonic": "S" },
+					{ "command": "next_result", "mnemonic": "N" },
+					{ "command": "prev_result", "caption": "Previous Result", "mnemonic": "P" }
+				]
+			},
+			{ "command": "toggle_save_all_on_build", "caption": "Save All on Build", "mnemonic": "A", "checkbox": true },
+			{ "caption": "-", "id": "end" }
+		]
+	}
+] 

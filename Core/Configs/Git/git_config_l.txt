@@ -1,0 +1,17 @@
+pull.rebase=false
+format.pretty=oneline
+mergetool.smerge.cmd=smerge mergetool "$BASE" "$LOCAL" "$REMOTE" -o "$MERGED"
+mergetool.smerge.trustexitcode=true
+merge.tool=smerge
+core.repositoryformatversion=0
+core.filemode=true
+core.bare=false
+core.logallrefupdates=true
+remote.origin.url=git@github.com:benjami-r/stm-log.git
+remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+branch.master.remote=origin
+branch.master.merge=refs/heads/master
+branch.feature/led.remote=origin
+branch.feature/led.merge=refs/heads/feature/led
+branch.feature/systick.remote=origin
+branch.feature/systick.merge=refs/heads/feature/systick

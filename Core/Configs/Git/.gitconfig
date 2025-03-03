@@ -1,0 +1,9 @@
+[pull]
+	rebase = false
+[format]
+	pretty = oneline
+[mergetool "smerge"]
+	cmd = smerge mergetool \"$BASE\" \"$LOCAL\" \"$REMOTE\" -o \"$MERGED\"
+	trustExitCode = true
+[merge]
+	tool = smerge

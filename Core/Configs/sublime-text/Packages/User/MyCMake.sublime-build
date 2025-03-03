@@ -1,0 +1,35 @@
+//MyCMake.sublime-build
+{
+	//"shell_cmd": "echo ${project_base_name}",
+	"shell_cmd": "cmake -B Build && cmake --build Build; echo =$?",
+	"working_dir": "${folder}",
+	//"file_regex": "^(..[^:\n]*):([0-9]+):?([0-9]+)?:? (.*)$",
+	"keyfiles": ["CMakeLists.txt", "*.cmake"],
+	"variants":
+	[
+		{
+			"name": "Clean",
+			"shell_cmd": "rm -rf Build"
+		},
+		{
+			"name": "Generate solution only",
+			"shell_cmd": "cmake -B Build; echo =$?"
+		},
+		{
+			"name": "Program",
+			"shell_cmd": "cmake --build Build --target program; echo =$?"
+			//"shell_cmd": "openocd -f board/st_nucleo_f0.cfg -c \"program Debug/elf verify reset exit\""
+			//arm-none-eabi-objcopy -O binary -S o.elf o.bin
+		},
+		{
+			"name": "... build & program",
+			"shell_cmd": "cmake -B Build && cmake --build Build && cmake --build Build --target program; echo =$?"
+		},
+		{
+			"name": "... main.c to main.asm only",
+			"shell_cmd": "arm-none-eabi-gcc -std=gnu11 -mcpu=cortex-m0 -mthumb -mfloat-abi=soft -Wall -Wextra -Wpedantic -ffunction-sections -fdata-sections -fstack-usage -DDEBUG -O0 -g3 -IDrivers/CMSIS/Device/ST/STM32F0xx/Include -IDrivers/CMSIS/Include -S Core/Sources/main.c -o Build/main.asm"
+			//"shell_cmd": "openocd -f board/st_nucleo_f0.cfg -c \"program Debug/elf verify reset exit\""
+			//arm-none-eabi-objcopy -O binary -S o.elf o.bin
+		},
+	]
+}
