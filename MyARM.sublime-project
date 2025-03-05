@@ -1,0 +1,54 @@
+{
+	"folders":
+	[
+		{
+			"path": ".",
+            "follow_symlinks": true,
+		}
+	],
+	"settings": //в т.ч. переопределяет пользовательские Settings
+    {
+        //"tab_size": 8,
+        "sublimegdb_workingdir": "${project_path:Build/}",
+        "sublimegdb_commandline": "arm-none-eabi-gdb --interpreter=mi *.elf",
+    },
+	"build_systems": //встроенные определения Build Systems
+    [
+        {
+            "name": "MyCMakePROJECT", //MyCMake.sublime-build
+            "working_dir": "${project_path}",
+            "shell_cmd": "cmake -B Build && cmake --build Build; echo =$?",
+            //"cmd": ["pwd"],
+            "file_regex": "^(..[^:\n]*):([0-9]+):?([0-9]+)?:? (.*)$", //F4, Shift+F4
+            //"file_regex": "^(.*):(\\d+):(\\d+):\\s*(.*)$",//F4, Shift+F4
+            "keyfiles": ["CMakeLists.txt", "*.cmake", "MyARM.sublime-project"],
+            "variants":
+            [
+                {
+                    "name": "Clean",
+                    "shell_cmd": "rm -rf Build"
+                },
+                {
+                    "name": "Clean, Generate cmake solution only",
+                    "shell_cmd": "rm -rf Build; cmake -B Build; echo =$?"
+                },
+                {
+                    "name": "Program",
+                    "shell_cmd": "cmake --build Build --target program; echo =$?"
+                    //"shell_cmd": "openocd -f board/st_nucleo_f0.cfg -c \"program Debug/elf verify reset exit\""
+                    //arm-none-eabi-objcopy -O binary -S o.elf o.bin
+                },
+                {
+                    "name": "Clean, build, program",
+                    "shell_cmd": "rm -rf Build; cmake -B Build && cmake --build Build && cmake --build Build --target program; echo =$?"
+                },
+                // {
+                //     "name": "... main.c to main.asm only",
+                //     "shell_cmd": "arm-none-eabi-gcc -std=gnu11 -mcpu=cortex-m0 -mthumb -mfloat-abi=soft -Wall -Wextra -Wpedantic -ffunction-sections -fdata-sections -fstack-usage -DDEBUG -O0 -g3 -IDrivers/CMSIS/Device/ST/STM32F0xx/Include -IDrivers/CMSIS/Include -S Core/Sources/main.c -o Build/main.asm"
+                //     //"shell_cmd": "openocd -f board/st_nucleo_f0.cfg -c \"program Debug/elf verify reset exit\""
+                //     //arm-none-eabi-objcopy -O binary -S o.elf o.bin
+                // },
+            ]
+        }
+    ]
+}

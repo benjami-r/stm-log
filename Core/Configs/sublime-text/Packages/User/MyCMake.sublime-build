@@ -3,7 +3,8 @@
 	//"shell_cmd": "echo ${project_base_name}",
 	"shell_cmd": "cmake -B Build && cmake --build Build; echo =$?",
 	"working_dir": "${folder}",
-	//"file_regex": "^(..[^:\n]*):([0-9]+):?([0-9]+)?:? (.*)$",
+	"file_regex": "^(..[^:\n]*):([0-9]+):?([0-9]+)?:? (.*)$", //F4, Shift+F4
+	//"file_regex": "^(.*):(\\d+):(\\d+):\\s*(.*)$",//F4, Shift+F4
 	"keyfiles": ["CMakeLists.txt", "*.cmake"],
 	"variants":
 	[
@@ -22,8 +23,8 @@
 			//arm-none-eabi-objcopy -O binary -S o.elf o.bin
 		},
 		{
-			"name": "... build & program",
-			"shell_cmd": "cmake -B Build && cmake --build Build && cmake --build Build --target program; echo =$?"
+			"name": "Clean, build, program",
+			"shell_cmd": "rm -rf Build; cmake -B Build && cmake --build Build && cmake --build Build --target program; echo =$?"
 		},
 		{
 			"name": "... main.c to main.asm only",

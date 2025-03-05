@@ -1,6 +1,6 @@
 #pragma once
 //= = = = = = = = = = = = = = = = = = = = = = = = = 
-//#include "m_periphery_GPIO.h"
+//#include "mPeriphMCU_GPIO.h"
 //Subject: GPIOx macro definitions & enums.
 //Used: CMSIS:
 //  Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f072xb.h

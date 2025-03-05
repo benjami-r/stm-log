@@ -1,6 +1,6 @@
 #pragma once
 //= = = = = = = = = = = = = = = = = = = = = = = = =
-//#include "m_core_STK.h"
+//#include "mPeriphCore_STK.h"
 //Subject: SysTick macro definitions & enums.
 //Used: CMSIS:
 //  Drivers/CMSIS/Include/core_cm0.h
@@ -59,12 +59,16 @@
 
     #define m_ASM_Do_DataSynchronizationBarrier { __DSB(); } //выполняем инструкцию барьера сразу после настройки и запуска SysTick, дабы убедиться, что он точно стартует в этой точке (команда из #include "cmsis_gcc.h")
 
+
+    enum me_STK_CSR_CLKSOURCE {mee_STK_CSR_CLKSOURCE_SLOW, mee_STK_CSR_CLKSOURCE_FAST};
+    enum me_STK_CSR_TICKINT {mee_STK_CSR_TICKINT_NO, mee_STK_CSR_TICKINT_YES};
+    enum me_STK_CSR_ENABLE {mee_STK_CSR_ENABLE_NO, mee_STK_CSR_ENABLE_YES};
     #define m_STK_Set_CSR(CLKSOURCE, TICKINT, ENABLE) { SysTick->CTRL = \
         (SysTick->CTRL & ~(SysTick_CTRL_CLKSOURCE_Msk | SysTick_CTRL_TICKINT_Msk | SysTick_CTRL_ENABLE_Msk)) | \
         ( \
             (CLKSOURCE << SysTick_CTRL_CLKSOURCE_Pos & SysTick_CTRL_CLKSOURCE_Msk) | \
-            (TICKINT << SysTick_CTRL_TICKINT_Pos & SysTick_CTRL_TICKINT_Msk)       | \
-            (ENABLE << SysTick_CTRL_ENABLE_Pos & SysTick_CTRL_ENABLE_Msk) \
+            (TICKINT << SysTick_CTRL_TICKINT_Pos     & SysTick_CTRL_TICKINT_Msk)   | \
+            (ENABLE << SysTick_CTRL_ENABLE_Pos       & SysTick_CTRL_ENABLE_Msk) \
         ); \
-        m_ASM_Do_DataSynchronizationBarrier \
     } //консолидировано в STK_CSR пишем три параметра: CLKSOURCE, TICKINT и ENABLE, и выполняем инструкцию барьера.
+   //m_ASM_Do_DataSynchronizationBarrier
