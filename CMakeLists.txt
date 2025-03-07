@@ -5,41 +5,13 @@ if(CMAKE_SOURCE_DIR STREQUAL CMAKE_BINARY_DIR)
     message(FATAL_ERROR "My: Use build directory different from source directory!")
 endif()
 ###################### CMAKE_TOOLCHAIN_FILE ########################### чтоб в cli не писать "cmake ... -P cubeide-gcc.cmake"
-set (CMAKE_TOOLCHAIN_FILE         		cubeide-gcc.cmake)        #include(cubeide-gcc.cmake RESULT_VARIABLE MY_MODULE_CUBEIDE_GCC_CMAKE)
-###################### VARIABLES ######################################
-set (CMAKE_C_STANDARD                   "11")           #-std=gnu11
-set (CMAKE_CXX_STANDARD                 "11")           #-std=gnu++11
-set (MY_MCU                             "STM32F072xB")
-set (CMAKE_EXECUTABLE_SUFFIX_ASM        ".elf")
-set (CMAKE_EXECUTABLE_SUFFIX_C          ".elf")         #set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "${PROJECT_NAME}.elf")
-set (CMAKE_EXECUTABLE_SUFFIX_CXX        ".elf")
-
-set (MY_MCU_FLAGS                       "-D${MY_MCU} -mcpu=cortex-m0 -mthumb -mfloat-abi=soft")
-set (CMAKE_C_FLAGS                      "${MY_MCU_FLAGS} -ffunction-sections -fdata-sections -fstack-usage -Wall -Wextra -Wpedantic --specs=nano.specs") #-Wextra:"unused variable"; -Wpedantic:0b10101010-"binary constants are a C2X feature or GCC extension"
-set (CMAKE_CXX_FLAGS                    "${CMAKE_C_FLAGS}")
-set (CMAKE_ASM_FLAGS                    "${CMAKE_C_FLAGS} -x assembler-with-cpp")
-set (CMAKE_EXE_LINKER_FLAGS             "-T../Core/Configs/linker.ld -static -Wl,-Map=% -Wl,--gc-sections -Wl,--print-memory-usage --specs=nano.specs") #-nostdlib --specs=nosys.specs
-
-if(NOT CMAKE_BUILD_TYPE)
-    set(CMAKE_BUILD_TYPE                "Debug")
-endif()
-if(CMAKE_BUILD_TYPE MATCHES Debug)
-    set(CMAKE_C_FLAGS_DEBUG             "-DDEBUG -O0 -g3") #не влияет на CMAKE_C/ASM_FLAGS, а дополняет опц-строку для BUILD_TYPE=DEBUG
-    set(CMAKE_CXX_FLAGS_DEBUG           "-DDEBUG -O0 -g3") #не влияет на CMAKE_C/ASM_FLAGS, а дополняет опц-строку для BUILD_TYPE=DEBUG
-    set(CMAKE_ASM_FLAGS_DEBUG           "-DDEBUG -O0 -g3") #не влияет на CMAKE_C/ASM_FLAGS, а дополняет опц-строку для BUILD_TYPE=DEBUG
-elseif(CMAKE_BUILD_TYPE MATCHES Release)
-    set(CMAKE_C_FLAGS_DEBUG             "-DRELEASE -Os -g0")
-    set(CMAKE_CXX_FLAGS_DEBUG           "-DRELEASE -Os -g0")
-    set(CMAKE_ASM_FLAGS_DEBUG           "-DRELEASE -Os -g0")
-endif()
-
+set (CMAKE_TOOLCHAIN_FILE         		gcc-arm-none-eabi.cmake)        #include(cubeide-gcc.cmake RESULT_VARIABLE MY_MODULE_CUBEIDE_GCC_CMAKE)
 ###################### PROJECT SETUP ##################################
-
 cmake_path(GET CMAKE_SOURCE_DIR 		STEM   PROJECT_NAME)         #STEM/FILENAME
 project( ${PROJECT_NAME}                #This sets: CMAKE_PROJECT_NAME, PROJECT_SOURCE_DIR, PROJECT_BINARY_DIR...
-    VERSION 							0.0.0.3                 #<major>[.<minor>[.<patch>[.<tweak>]]]
-    DESCRIPTION                         "My template for STM32F0: NUCLEO-F072RB (MC: stm32f072rbt6)"
-    HOMEPAGE_URL                        "https://github.com/benjami-r/f000"
+    VERSION 							0.0.0.0                 #<major>[.<minor>[.<patch>[.<tweak>]]]
+    DESCRIPTION                         "log for STM32F0: NUCLEO-F072RB (MC: stm32f072rbt6)"
+    HOMEPAGE_URL                        "https://github.com/benjami-r/stm-log"
     LANGUAGES                            ASM C CXX
 )
 include_directories(
