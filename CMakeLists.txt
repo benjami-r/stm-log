@@ -15,10 +15,10 @@ set (CMAKE_EXECUTABLE_SUFFIX_C          ".elf")         #set_target_properties($
 set (CMAKE_EXECUTABLE_SUFFIX_CXX        ".elf")
 
 set (MY_MCU_FLAGS                       "-D${MY_MCU} -mcpu=cortex-m0 -mthumb -mfloat-abi=soft")
-set (CMAKE_C_FLAGS                      "${MY_MCU_FLAGS} -ffunction-sections -fdata-sections -fstack-usage -Wall -Wextra -Wpedantic") #-Wextra:"unused variable"; -Wpedantic:0b10101010-"binary constants are a C2X feature or GCC extension"
+set (CMAKE_C_FLAGS                      "${MY_MCU_FLAGS} -ffunction-sections -fdata-sections -fstack-usage -Wall -Wextra -Wpedantic --specs=nano.specs") #-Wextra:"unused variable"; -Wpedantic:0b10101010-"binary constants are a C2X feature or GCC extension"
 set (CMAKE_CXX_FLAGS                    "${CMAKE_C_FLAGS}")
 set (CMAKE_ASM_FLAGS                    "${CMAKE_C_FLAGS} -x assembler-with-cpp")
-set (CMAKE_EXE_LINKER_FLAGS             "-T../Core/Configs/linker.ld -nostdlib -static -Wl,-Map=% -Wl,--gc-sections -Wl,--print-memory-usage")
+set (CMAKE_EXE_LINKER_FLAGS             "-T../Core/Configs/linker.ld -static -Wl,-Map=% -Wl,--gc-sections -Wl,--print-memory-usage --specs=nano.specs") #-nostdlib --specs=nosys.specs
 
 if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE                "Debug")
@@ -50,6 +50,7 @@ include_directories(
 add_executable( ${PROJECT_NAME}
     Core/Sources/startup.s
     Core/Sources/main.c
+    Core/Sources/proba.cpp
 )
 #add_compile_definitions()
 #add_compile_options() #не влияет на CMAKE_C/ASM_FLAGS, а дополняет опц-строку

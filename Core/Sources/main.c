@@ -14,6 +14,7 @@
 		}
 	}
 //}
+void fCPP();
 
 int main() {
 	m_GPIOx_Enable(A);
@@ -28,7 +29,7 @@ int main() {
 	//m_STK_Set_CSR(1,1,1);
 	m_STK_Set_CSR(mee_STK_CSR_CLKSOURCE_FAST, mee_STK_CSR_TICKINT_YES, mee_STK_CSR_ENABLE_YES);
 
-
+	fCPP();
 	return 0;
 }
 
