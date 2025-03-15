@@ -16,6 +16,9 @@
 //  'm_UNIT_Reset  _REG_FLAG'       - reset to 'Reset value' (flag bit, fields)
 //  'm_ACTION_Do_SUBACTION'         - do some action (no set data - commands)
 //= = = = = = = = = = = = = = = = = = = = = = = = =
+#ifndef __STM32F072xB_H
+#include "stm32f072xb.h"
+#endif
 #ifndef __CORE_CM0_H_GENERIC
 #include "core_cm0.h"
 #endif

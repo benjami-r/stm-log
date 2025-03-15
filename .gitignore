@@ -2,4 +2,4 @@
 Debug/
 Release/
 Build/
-cmake-build-debug/
+CMakeFiles/

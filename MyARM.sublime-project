@@ -17,7 +17,7 @@
         {
             "name": "MyCMakePROJECT", //MyCMake.sublime-build
             "working_dir": "${project_path}",
-            "shell_cmd": "cmake -B Build && cmake --build Build; echo =$?",
+            "shell_cmd": "cmake -B Debug && cmake --build Debug; echo =$?",
             //"cmd": ["pwd"],
             "file_regex": "^(..[^:\n]*):([0-9]+):?([0-9]+)?:? (.*)$", //F4, Shift+F4
             //"file_regex": "^(.*):(\\d+):(\\d+):\\s*(.*)$",//F4, Shift+F4
@@ -26,15 +26,15 @@
             [
                 {
                     "name": "Clean",
-                    "shell_cmd": "rm -rf Build"
+                    "shell_cmd": "rm -rf Debug"
                 },
                 {
                     "name": "Clean, Generate cmake solution only",
-                    "shell_cmd": "rm -rf Build; cmake -B Build; echo =$?"
+                    "shell_cmd": "rm -rf Debug; cmake -B Debug; echo =$?"
                 },
                 {
                     "name": "Program",
-                    "shell_cmd": "cmake --build Build --target program; echo =$?"
+                    "shell_cmd": "cmake --build Debug --target program; echo =$?"
                     //"shell_cmd": "openocd -f board/st_nucleo_f0.cfg -c \"program Debug/elf verify reset exit\""
                     //arm-none-eabi-objcopy -O binary -S o.elf o.bin
                 },
