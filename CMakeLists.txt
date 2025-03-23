@@ -113,3 +113,9 @@ add_custom_command(                     #size & .bin
 add_custom_target(program               #UPLOAD executable to flash
     openocd -f board/st_nucleo_f0.cfg -c "program ${PROJECT_NAME}${CMAKE_EXECUTABLE_SUFFIX_C} verify reset exit"
 )
+
+#add_compile_definitions()
+#add_compile_options() #не влияет на CMAKE_C/ASM_FLAGS, а дополняет опц-строку
+#add_link_options() #не влияет на CMAKE_EXE_LINKER_FLAGS, а дополняет опц-строку
+#add_library()
+
