@@ -17,15 +17,15 @@
 .section .text.Reset_Handler,"ax",%progbits
 .weak Reset_Handler
 .type Reset_Handler, %function
-Reset_Handler:
+Reset_Handler: /*
   movs r0, #0                   //runner
   movs r0, #0
   movs r0, #0
   movs r0, #0
   movs r0, #0
-  movs r0, #0
+  movs r0, #0  */
 
-DataSegInit:  /* Copy the data segment initializers from flash to SRAM */
+DataSegInit: // Copy the data segment initializers from flash to SRAM
   movs r0, #0
   ldr  r1, =_ld_data_vma_start  //_sdata  - to
   ldr  r2, =_ld_data_vma_end    //_edata
@@ -40,7 +40,7 @@ DataSegCopyLoop:
   cmp  r4, r2
   bcc DataSegCopy
 
-/* Zero fill the bss segment. */
+BssSegInit: // Zero fill the bss segment.
   movs r0, #0               //padding
   ldr  r1, =_ld_bss_start   //_sbss
   ldr  r2, =_ld_bss_end     //_ebss
@@ -52,10 +52,10 @@ LoopFillBssZero:
   cmp r1, r2
   bcc FillBssZero
 
-/* Call the application's entry point.*/
+// Call the application's entry point.
   bl main
 LoopForever:
-    b LoopForever
+  b LoopForever
 
 .size Reset_Handler, .-Reset_Handler
 

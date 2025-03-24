@@ -34,11 +34,11 @@
   }
 //}
 
+
+int fc(){return 0;}
 int fcpp();
 
-int main(void)
-{
-
+int main(void){
   m_GPIOx_Enable(A);
   m_GPIOxpin_Set(A, 5, mee_GPIO_MODER_OUTPUT, mee_GPIO_OTYPER_PUSHPULL, mee_GPIO_OSPEEDR_LOW, mee_GPIO_PUPDR_NOPUPD);
   //m_GPIOxpin_Up(A, 5);
@@ -50,9 +50,11 @@ int main(void)
   m_STK_Down_CVR_CURRENT;
   //m_STK_Set_CSR(1,1,1);
   m_STK_Set_CSR(mee_STK_CSR_CLKSOURCE_FAST, mee_STK_CSR_TICKINT_YES, mee_STK_CSR_ENABLE_YES);
-  int x = fcpp();
+  
+  int x = fc();
+  int y = fcpp();
 
 
-    /* Loop forever */
-	for(;;);
+
+	//for(;;); // Loop forever
 }

@@ -1,3 +1,4 @@
+
 #include <stdint.h>
 
 
@@ -6,12 +7,14 @@ class C {
 public:
 	int aGet() {return a;}
 };
+
 extern "C" {
 	int fcpp(){
 		//C c;
-		C *c = new C;
+		//C *c = new C;
 		//return c.aGet();
-		return c->aGet();
+		//return c->aGet();
+        return 0;
 	}
 }
 

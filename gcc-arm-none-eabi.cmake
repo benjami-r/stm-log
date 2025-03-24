@@ -11,13 +11,12 @@ set(CMAKE_TRY_COMPILE_TARGET_TYPE  STATIC_LIBRARY) #My: Skip link step during to
 
 set(TOOLCHAIN_PREFIX               "arm-none-eabi-")
 set(CMAKE_C_COMPILER               "${TOOLCHAIN_PREFIX}gcc")
-set(CMAKE_ASM_COMPILER             "${TOOLCHAIN_PREFIX}gcc")
+set(CMAKE_ASM_COMPILER             "${TOOLCHAIN_PREFIX}gcc") #gcc - если требуется препроцессор
 set(CMAKE_CXX_COMPILER             "${TOOLCHAIN_PREFIX}g++")
-#set(CMAKE_LINKER                   "${TOOLCHAIN_PREFIX}ld")
-set(CMAKE_LINKER                   "${TOOLCHAIN_PREFIX}g++") #MX
+#set(CMAKE_LINKER                   "${TOOLCHAIN_PREFIX}ld") #почему-то (язык CXX?) игнорится, в link.txt все равно g++.
+set(CMAKE_LINKER                   "${TOOLCHAIN_PREFIX}g++") #gcc, g++ в MX, ld в IDE
 set(CMAKE_OBJCOPY                  "${TOOLCHAIN_PREFIX}objcopy")
 set(CMAKE_SIZE                     "${TOOLCHAIN_PREFIX}size")
-#set(CMAKE_AR                       "${TOOLCHAIN_PREFIX}ar")
-#set(CMAKE_RANLIB                   "${TOOLCHAIN_PREFIX}ranlib")
-#set(CMAKE_STRIP                    "${TOOLCHAIN_PREFIX}ld")
-
+# set(CMAKE_AR                       "${TOOLCHAIN_PREFIX}ar")
+# set(CMAKE_RANLIB                   "${TOOLCHAIN_PREFIX}ranlib")
+# set(CMAKE_STRIP                    "${TOOLCHAIN_PREFIX}ld")

@@ -15,7 +15,7 @@
 	"build_systems": //встроенные определения Build Systems
     [
         {
-            "name": "MyCMakePROJECT", //MyCMake.sublime-build
+            "name": "MyCMakeSUBLPRJ", //MyCMake.sublime-build
             "working_dir": "${project_path}",
             "shell_cmd": "cmake -B Debug && cmake --build Debug; echo =$?",
             //"cmd": ["pwd"],
@@ -29,18 +29,14 @@
                     "shell_cmd": "rm -rf Debug"
                 },
                 {
-                    "name": "Clean, Generate cmake solution only",
-                    "shell_cmd": "rm -rf Debug; cmake -B Debug; echo =$?"
-                },
-                {
-                    "name": "Program",
-                    "shell_cmd": "cmake --build Debug --target program; echo =$?"
+                    "name": "Clean, build, program",
+                    "shell_cmd": "rm -rf Debug; cmake -B Debug && cmake --build Debug && cmake --build Debug --target program; echo =$?"
                     //"shell_cmd": "openocd -f board/st_nucleo_f0.cfg -c \"program Debug/elf verify reset exit\""
                     //arm-none-eabi-objcopy -O binary -S o.elf o.bin
                 },
                 {
-                    "name": "Clean, build, program",
-                    "shell_cmd": "rm -rf Build; cmake -B Build && cmake --build Build && cmake --build Build --target program; echo =$?"
+                    "name": "Generate cmake solution only",
+                    "shell_cmd": "cmake -B Debug; echo =$?"
                 },
                 // {
                 //     "name": "... main.c to main.asm only",
