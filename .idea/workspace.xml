@@ -17,23 +17,27 @@
   </component>
   <component name="CMakeRunConfigurationManager">
     <generated>
-      <config projectName="c60" targetName="program" />
-      <config projectName="c60" targetName="c60" />
+      <config projectName="c70" targetName="program" />
+      <config projectName="c70" targetName="c70" />
     </generated>
   </component>
   <component name="CMakeSettings" AUTO_RELOAD="true">
     <configurations>
-      <configuration PROFILE_NAME="Debug" ENABLED="true" GENERATION_DIR="Build" CONFIG_NAME="Debug" />
+      <configuration PROFILE_NAME="Debug" ENABLED="true" GENERATION_DIR="Debug" CONFIG_NAME="Debug" />
+      <configuration PROFILE_NAME="Debug-event-trace" ENABLED="true" CONFIG_NAME="Debug" GENERATION_OPTIONS="--profiling-format=google-trace --profiling-output=CMakeFiles/clion-event-trace.json" />
     </configurations>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="69aa3d84-3f20-481b-9540-81c5449e3ce8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Configs/sublime-text/Packages/User/MyCMake.sublime-build" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Configs/sublime-text/Packages/User/MyCMake.sublime-build" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Sources/Include/m_core_STK.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Sources/Include/m_periphery_GPIO.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Sources/Include/mPeriphMCU_GPIO.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Sources/Include/mPeriphMCU_GPIO.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Sources/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Sources/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Sources/probe.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Sources/probe_0.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyARM.sublime-project" beforeDir="false" afterPath="$PROJECT_DIR$/MyARM.sublime-project" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyARM.sublime-workspace" beforeDir="false" afterPath="$PROJECT_DIR$/MyARM.sublime-workspace" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gcc-arm-none-eabi.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/gcc-arm-none-eabi.cmake" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,16 +80,8 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Core/Sources/Include/mPeriphMCU_GPIO.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f072xb.h" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -99,7 +95,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;CMake Application.c60.executor&quot;: &quot;Run&quot;,
-    &quot;OpenOCD Download &amp; Run.OCD embed-test.executor&quot;: &quot;Debug&quot;,
+    &quot;OpenOCD Download &amp; Run.OCD embed-test.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.RadMigrateCodeStyle&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
@@ -107,22 +103,27 @@
     &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
     &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;feature/systick&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/au/prj/free/c60/Core/Configs/STM32F0x0.svd&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.cidr.rtos.config&quot;
+    &quot;last_opened_file_path&quot;: &quot;/home/au/bin/arm-toolchain/bin/arm-none-eabi-gdb&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.sync&quot;
   }
 }</component>
   <component name="RunManager" selected="OpenOCD Download &amp; Run.OCD embed-test">
-    <configuration name="c60" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="c60" TARGET_NAME="c60" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="c60" RUN_TARGET_NAME="c60">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="c70" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="c70" TARGET_NAME="c70" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="c70" RUN_TARGET_NAME="c70">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="program" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="c60" TARGET_NAME="program" CONFIG_NAME="Debug">
+    <configuration name="program" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="c70" TARGET_NAME="program" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="OCD embed-test" type="com.jetbrains.cidr.embedded.openocd.conf.type" factoryName="com.jetbrains.cidr.embedded.openocd.conf.factory" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="c60" TARGET_NAME="c60" CONFIG_NAME="Debug" version="1" RUN_PATH="$PROJECT_DIR$/Build/c60.elf">
+    <configuration name="OCD embed-test" type="com.jetbrains.cidr.embedded.openocd.conf.type" factoryName="com.jetbrains.cidr.embedded.openocd.conf.factory" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="c70" TARGET_NAME="c70" CONFIG_NAME="Debug" version="1" RUN_TARGET_PROJECT_NAME="c70" RUN_TARGET_NAME="c70">
       <openocd version="1" gdb-port="3333" telnet-port="4444" board-config="board/st_nucleo_f0.cfg" reset-type="INIT" download-type="UPDATED_ONLY">
         <debugger kind="GDB" isBundled="true" />
       </openocd>
@@ -131,7 +132,7 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="CMake Application.c60" />
+      <item itemvalue="CMake Application.c70" />
       <item itemvalue="CMake Application.program" />
       <item itemvalue="OpenOCD Download &amp; Run.OCD embed-test" />
     </list>
@@ -145,16 +146,5 @@
       <updated>1739961571211</updated>
     </task>
     <servers />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/Core/Sources/main.c</url>
-          <line>15</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

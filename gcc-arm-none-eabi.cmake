@@ -20,3 +20,11 @@ set(CMAKE_SIZE                     "${TOOLCHAIN_PREFIX}size")
 # set(CMAKE_AR                       "${TOOLCHAIN_PREFIX}ar")
 # set(CMAKE_RANLIB                   "${TOOLCHAIN_PREFIX}ranlib")
 # set(CMAKE_STRIP                    "${TOOLCHAIN_PREFIX}ld")
+
+
+#######################################################################
+#наверное перед PROJECT SETUP
+set(CMAKE_C_STANDARD             "23")     #-std=gnu11
+set(CMAKE_CXX_STANDARD           "23")     #-std=gnu++11 (дает using-алиас)
+#set(CMAKE_CXX_STANDARD_REQUIRED  ON)       #требовать, ибо using-алиас с 11
+#######################################################################

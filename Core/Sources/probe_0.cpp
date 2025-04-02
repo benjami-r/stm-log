@@ -1,4 +1,4 @@
-
+/*
 #include <stdint.h>
 
 
@@ -59,5 +59,5 @@ void init1() {
 	btn.handle();  // Компилятор подставит прямой вызов onEvent()
 }
 
-
+*/
 

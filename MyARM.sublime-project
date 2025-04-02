@@ -19,8 +19,8 @@
             "working_dir": "${project_path}",
             "shell_cmd": "cmake -B Debug && cmake --build Debug; echo =$?",
             //"cmd": ["pwd"],
-            "file_regex": "^(..[^:\n]*):([0-9]+):?([0-9]+)?:? (.*)$", //F4, Shift+F4
-            //"file_regex": "^(.*):(\\d+):(\\d+):\\s*(.*)$",//F4, Shift+F4
+            //"file_regex": "^(..[^:\n]*):([0-9]+):?([0-9]+)?:? (.*)$", //F4, Shift+F4
+            "file_regex": "^(.*):(\\d+):(\\d+):\\s*(.*)$",//F4, Shift+F4
             "keyfiles": ["CMakeLists.txt", "*.cmake", "MyARM.sublime-project"],
             "variants":
             [

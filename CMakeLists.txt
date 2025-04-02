@@ -3,13 +3,6 @@
 # $    rm -rf Debug; cmake -B Debug && cmake --build Debug
 # $    cmake --build Debug --target program
 # Управляется: в теку сорса билдить нельзя (cmake --build .) - даст ошибку; имя теки проекта (отбросив расширение) будет именем проекта; CMAKE_BUILD_TYPE задает тип билда (Debug/Release), если не задан, берется из CMAKE_BINARY_DIR (т.е. из команды запуска, п: cmake --build Debug); LINK_WITH_LIBS задает линковать ли библы (пока просто дефайненена или нет, далее может XXX какие: С/С++ ...).
-
-#TODO:
-#Предусмотреть компиляции:
-#   - ASM C, без библиотек - ПРОСТО БЕЗ CXX? НЕ НАДО!, 
-#   - ASM C CXX, без библиотек (т.е. только компиляционный CXX - что даст?),
-#   - ASM C CXX, с библиотекой, обеспечивающей CXX.
-
 ###################### BEGIN ##########################################
 cmake_minimum_required(VERSION 3.20)
 if(CMAKE_SOURCE_DIR STREQUAL CMAKE_BINARY_DIR)
@@ -33,18 +26,20 @@ include_directories(
 add_executable( ${PROJECT_NAME}
     Core/Sources/startup.s
     Core/Sources/main.c
-    Core/Sources/probe.cpp
+        Core/Sources/probe_0.cpp
+        Core/Sources/probe_1.cpp
+        Core/Sources/probe_2.cpp
 )
 ###################### VARIABLES ######################################
-set(CMAKE_C_STANDARD             "11")     #-std=gnu11
-set(CMAKE_CXX_STANDARD           "11")     #-std=gnu++11 (дает using-алиас)
-set(CMAKE_CXX_STANDARD_REQUIRED  ON)       #требовать, ибо using-алиас с 11
-set(CMAKE_EXECUTABLE_SUFFIX      ".elf")   #наверное после PROJECT SETUP, ибо иначе некуда лепить свойство
+
+
+
+set(CMAKE_EXECUTABLE_SUFFIX      ".elf")   #наверное после PROJECT SETUP
 ###################### MY GCC FLAGS ###################################
 set(F_TARGET                     "-mcpu=cortex-m0 -mthumb -mfloat-abi=soft")
 set(F_SPECS                      "-specs=nano.specs -specs=nosys.specs")
 set(F_OPTIMIZATION               "-fdata-sections -ffunction-sections") #places each data and function into it's own section
-set(F_DEVELOP                    "-fstack-usage") #выводить в .su инф. об использовании стека каждой функцией.
+set(F_DEVELOP                    "-save-temps -fstack-usage") #сохранить промежуточные; выводить в .su инф. об использовании стека каждой функцией.
 set(F_WARN                       "-Wall -Wextra -Wpedantic") #-Wextra:"unused variable"; -Wpedantic:0b10101010-"binary constants are a C2x feature or GCC extension"
 set(F_GCC                        "${F_TARGET} ${F_SPECS} ${F_OPTIMIZATION} ${F_DEVELOP} ${F_WARN}")
 set(F_GCC_ASM                    "${F_GCC} -x assembler-with-cpp -MMD -MP") #-MMD -MP - формировать файл зависимостей в формате Makefile, включать пустые цели
@@ -58,7 +53,7 @@ set(CMAKE_CXX_FLAGS              "${F_GCC_CXX}")
 if(NOT CMAKE_BUILD_TYPE) #присвоим переменной CMAKE_BUILD_TYPE имя бин-теки из текущего вызова cmake --build ... (например Debug если было "cmake --build Debug").
     cmake_path(GET CMAKE_BINARY_DIR  STEM  CMAKE_BUILD_TYPE) # set(CMAKE_BUILD_TYPE "Debug")
 endif()
-message("My DEBUG RELEASE: CMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}.")
+message("My DEBUG / RELEASE: CMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}.")
 if(CMAKE_BUILD_TYPE MATCHES Debug)
     set(CMAKE_C_FLAGS_DEBUG      "-DDEBUG -O0 -g3") #не влияет на CMAKE_C/ASM_FLAGS, а дополняет опц-строку для BUILD_TYPE=DEBUG
     set(CMAKE_CXX_FLAGS_DEBUG    "-DDEBUG -O0 -g3") #не влияет на CMAKE_C/ASM_FLAGS, а дополняет опц-строку для BUILD_TYPE=DEBUG
@@ -68,7 +63,7 @@ elseif(CMAKE_BUILD_TYPE MATCHES Release)
     set(CMAKE_CXX_FLAGS_DEBUG    "-DRELEASE -Os -g0")
     set(CMAKE_ASM_FLAGS_DEBUG    "-DRELEASE -Os -g0")
 else()
-    message(FATAL_ERROR "My DEBUG RELEASE: Unknown CMAKE_BUILD_TYPE.")
+    message(FATAL_ERROR "My DEBUG / RELEASE: Unknown CMAKE_BUILD_TYPE.")
 endif()
 #::: LINKER FLAGS   https://gcc.gnu.org/onlinedocs/gcc/Link-Options.html
 set(F_GCC_LINK_COMMON            "-Wl,-Map=${CMAKE_PROJECT_NAME}.map,--gc-sections,--print-memory-usage") #-Wl,-Map=% # -Wl,--gc-sections - не включать неиспользуемый код (требует для компилятора опций -ffunction-sections and -fdata-sections)
